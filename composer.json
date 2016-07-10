@@ -1,0 +1,21 @@
+{
+    "name": "kevbaldwyn/miner",
+    "description": "",
+
+    "require": {
+        "php": ">=5.5",
+		"illuminate/support": ">=4.1"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "mockery/mockery":"dev-master"
+    },
+
+	"autoload": {
+		"psr-4": {
+			"KevBaldwyn\\Miner\\": "src/",
+			"KevBaldwyn\\Tests\\Miner\\": "tests/"
+		}
+	}
+}
