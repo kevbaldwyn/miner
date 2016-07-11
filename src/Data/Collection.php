@@ -57,4 +57,23 @@ class Collection extends BaseCollection {
             return $item->getValue();
         }, SORT_REGULAR, true);
     }
+
+
+    public function sortByKey()
+    {
+        return $this->sortBy(function(Point $item) {
+            return $item->getKey();
+        }, SORT_REGULAR);
+    }
+
+
+    public function getVector()
+    {
+        $ar = [];
+        $collection = $this->sortByKey();
+        foreach($collection as $item) {
+            $ar[] = $item->getValue();
+        }
+        return $ar;
+    }
 }

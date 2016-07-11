@@ -35,4 +35,24 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
         $this->assertSame('Key2', $sorted->first()->getKey());
     }
 
+    public function test_sortByKey()
+    {
+        $collection = new Collection([
+            new Point('Key B', 1),
+            new Point('Key A', 2.4)
+        ]);
+
+        $sorted = $collection->sortByKey();
+        $this->assertSame(2.4, $sorted->first()->getValue());
+    }
+
+    public function test_getVector()
+    {
+        $collection = new Collection([
+            new Point('Key B', 1),
+            new Point('Key A', 2.4)
+        ]);
+
+        $this->assertSame([2.4, 1], $collection->getVector());
+    }
 }
