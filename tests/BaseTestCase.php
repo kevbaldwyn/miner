@@ -282,6 +282,109 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase {
                         new Point('like', 'D')
                     ])
                 ]
+            ],
+            // sports people
+            [
+                'Asuka Teramoto' => new Collection([
+                    new Point('age', 16),
+                    new Point('height', 54),
+                    new Point('weight', 66),
+                ]),
+                'Brittainey Raven' => new Collection([
+                    new Point('age', 22),
+                    new Point('height', 72),
+                    new Point('weight', 162),
+                ]),
+                'Chen Nan' => new Collection([
+                    new Point('age', 30),
+                    new Point('height', 78),
+                    new Point('weight', 204),
+                ]),
+                'Gabby Douglas' => new Collection([
+                    new Point('age', 16),
+                    new Point('height', 49),
+                    new Point('weight', 90),
+                ]),
+                'Helalia Johannes' => new Collection([
+                    new Point('age', 32),
+                    new Point('height', 65),
+                    new Point('weight', 99),
+                ]),
+                'Irina Miketenko' => new Collection([
+                    new Point('age', 40),
+                    new Point('height', 63),
+                    new Point('weight', 106),
+                ]),
+                'Jennifer Lacy' => new Collection([
+                    new Point('age', 27),
+                    new Point('height', 75),
+                    new Point('weight', 175),
+                ]),
+                'Kara Goucher' => new Collection([
+                    new Point('age', 34),
+                    new Point('height', 67),
+                    new Point('weight', 123),
+                ]),
+                'Linlin Deng' => new Collection([
+                    new Point('age', 16),
+                    new Point('height', 54),
+                    new Point('weight', 68),
+                ]),
+                'Nakia Sanford' => new Collection([
+                    new Point('age', 34),
+                    new Point('height', 76),
+                    new Point('weight', 200),
+                ]),
+                'Nikki Blue' => new Collection([
+                    new Point('age', 26),
+                    new Point('height', 68),
+                    new Point('weight', 163),
+                ]),
+                'Qiushuang Huang' => new Collection([
+                    new Point('age', 20),
+                    new Point('height', 61),
+                    new Point('weight', 95),
+                ]),
+                'Rebecca Tunney' => new Collection([
+                    new Point('age', 16),
+                    new Point('height', 58),
+                    new Point('weight', 77),
+                ]),
+                'Rene Kalmer' => new Collection([
+                    new Point('age', 32),
+                    new Point('height', 70),
+                    new Point('weight', 108),
+                ]),
+                'Shanna Crossley' => new Collection([
+                    new Point('age', 26),
+                    new Point('height', 70),
+                    new Point('weight', 155),
+                ]),
+                'Shavonte Zellous' => new Collection([
+                    new Point('age', 24),
+                    new Point('height', 70),
+                    new Point('weight', 155),
+                ]),
+                'Tatyana Petrova' => new Collection([
+                    new Point('age', 29),
+                    new Point('height', 63),
+                    new Point('weight', 108),
+                ]),
+                'Tiki Gelana' => new Collection([
+                    new Point('age', 25),
+                    new Point('height', 65),
+                    new Point('weight', 106),
+                ]),
+                'Valeria Straneo' => new Collection([
+                    new Point('age', 36),
+                    new Point('height', 66),
+                    new Point('weight', 97),
+                ]),
+                'Viktoria Komova' => new Collection([
+                    new Point('age', 17),
+                    new Point('height', 61),
+                    new Point('weight', 76),
+                ]),
             ]
         ];
 

@@ -89,4 +89,16 @@ class Set extends BaseCollection {
         $this->computeDeviations();
         return $this->frequencies;
     }
+
+    public function getNormalised()
+    {
+        $support = new DataSetSupport($this);
+        return $this->transform(function(Collection $data) use ($support) {
+            $collection = new Collection([], $data->getName());
+            foreach($data as $point) {
+                $collection->push(new Point($point->getKey(), $support->getModifiedStandardScoreFor($point)));
+            }
+            return $collection;
+        });
+    }
 }

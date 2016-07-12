@@ -67,4 +67,15 @@ class SetTest extends BaseTestCase {
             ]
         ], $frequencies);
     }
+
+    public function test_getNormalised()
+    {
+        $set = new Set(self::data(null, 5));
+        $newSet = $set->getNormalised();
+        $data   = $newSet->getDataFor('Asuka Teramoto');
+
+        $this->assertCount($set->count(), $newSet);
+        $this->assertCount($set->getDataFor('Asuka Teramoto')->count(), $data);
+        $this->assertSame(-1.64, round($data->getDataPoint(new Point('age', null))->getValue(), 2));
+    }
 }
