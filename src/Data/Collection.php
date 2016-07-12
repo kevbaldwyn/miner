@@ -4,7 +4,13 @@ use Illuminate\Support\Collection as BaseCollection;
 
 class Collection extends BaseCollection {
 
-    public function __construct($items = [])
+    private $name;
+
+    /**
+     * @param array $items
+     * @param null $name optional key / name for the collection
+     */
+    public function __construct($items = [], $name = null)
     {
         $items = (new BaseCollection($items))->transform(function($item) {
             if(!$item instanceof Point) {
@@ -12,6 +18,8 @@ class Collection extends BaseCollection {
             }
             return $item;
         })->all();
+
+        $this->name = $name;
 
         parent::__construct($items);
     }
@@ -26,6 +34,10 @@ class Collection extends BaseCollection {
         return $c;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
 
     public function hasDataPoint(Point $dataPoint)
     {
