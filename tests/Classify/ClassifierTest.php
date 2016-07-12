@@ -8,7 +8,7 @@ use KevBaldwyn\Tests\Miner\BaseTestCase;
 
 class ClassifierTest extends BaseTestCase {
 
-    public function test_classify()
+    public function test_classify_standard()
     {
         $c = new Classifier(new Set(self::data(null, 3)));
 
@@ -27,6 +27,37 @@ class ClassifierTest extends BaseTestCase {
         );
 
         $this->assertSame('L', $res->getValue());
+    }
+
+    public function test_classify_normalised()
+    {
+        $c = new Classifier(new Set(self::data(null, 5)));
+
+        // first classification (correct)
+        $res = $c->classify(
+            new Set(self::data(null, 6)),
+            new Collection([
+                new Point('weight', 74),
+                new Point('height', 190)
+            ], 'Crystal Langhorne'),
+            Point::named('sport'),
+            true // normalise
+        );
+        $this->assertSame('Basketball', $res->getValue());
+
+        // second classification (incorrect)
+        $res = $c->classify(
+            new Set(self::data(null, 6)),
+            new Collection([
+                new Point('weight', 62),
+                new Point('height', 115)
+            ], 'Aly Raisman'),
+            Point::named('sport'),
+            true // normalise
+        );
+        // this is actually an incorrect classification
+        // we expect the classifier to get this wrong
+        $this->assertSame('Track', $res->getValue());
     }
 
 }
