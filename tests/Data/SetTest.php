@@ -76,6 +76,6 @@ class SetTest extends BaseTestCase {
 
         $this->assertCount($set->count(), $newSet);
         $this->assertCount($set->getDataFor('Asuka Teramoto')->count(), $data);
-        $this->assertSame(-1.64, round($data->getDataPoint(new Point('age', null))->getValue(), 2));
+        $this->assertSame(-1.64, round($data->getDataPoint(Point::named('age'))->getValue(), 2));
     }
 }

@@ -39,7 +39,7 @@ class Set extends BaseCollection {
         $missing = new Collection([]);
         $this->computeDeviations();
         foreach($this->deviations as $item => $data) {
-            $point = new Point($item, null);
+            $point = Point::named($item);
             if(!$dataPoints->hasDataPoint($point)) {
                 $missing->push($point);
             }

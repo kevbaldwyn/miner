@@ -23,7 +23,7 @@ class ClassifierTest extends BaseTestCase {
                 new Point('backup vocals', 5),
                 new Point('rap', 1)
             ], 'Chris Cagle/ I Breathe In. I Breathe Out'),
-            new Point('like', null)
+            Point::named('like')
         );
 
         $this->assertSame('L', $res->getValue());

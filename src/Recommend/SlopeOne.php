@@ -28,7 +28,7 @@ class SlopeOne implements RecommenderInterface {
         foreach($userRatings as $userDataPoint) {
 
             foreach($this->dataSet->getDeviations() as $item => $data) {
-                $dataPoint  = new Point($item, null);
+                $dataPoint  = Point::named($item);
                 $dataPoints = Collection::fromKeyValuePairs($data);
 
                 if(!$userRatings->hasDataPoint($dataPoint) && $dataPoints->hasDataPoint($userDataPoint)) {

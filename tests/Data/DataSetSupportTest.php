@@ -19,13 +19,13 @@ class DataSetSupportTest extends BaseTestCase {
             75000,
             105000,
             115000
-        ], $support->getValues(new Point('salary', null)));
+        ], $support->getValues(Point::named('salary')));
     }
 
     public function test_getAbsoluteStandardDeviation()
     {
         $support = new DataSetSupport(new Set(self::data(null, 2)));
-        $this->assertSame(19125, (integer) $support->getAbsoluteStandardDeviation(new Point('salary', null)));
+        $this->assertSame(19125, (integer) $support->getAbsoluteStandardDeviation(Point::named('salary')));
     }
 
     public function test_getModifiedStandardScoreFor()
