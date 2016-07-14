@@ -39,6 +39,11 @@ class Collection extends BaseCollection {
         return $this->name;
     }
 
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
     public function hasDataPoint(Point $dataPoint)
     {
         return !is_null($this->getDataPoint($dataPoint));

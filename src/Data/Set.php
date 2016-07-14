@@ -11,6 +11,11 @@ class Set extends BaseCollection {
 
     public function __construct($items = [])
     {
+        foreach($items as $k => $v) {
+            if(is_null($v->getName())) {
+                $v->setName($k);
+            }
+        }
         parent::__construct($items);
     }
 

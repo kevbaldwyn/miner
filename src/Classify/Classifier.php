@@ -1,5 +1,6 @@
 <?php namespace KevBaldwyn\Miner\Classify;
 
+use KevBaldwyn\Miner\Classify\Method\NearestNeighbour;
 use KevBaldwyn\Miner\Data\Collection;
 use KevBaldwyn\Miner\Data\Point;
 use KevBaldwyn\Miner\Data\Set;
@@ -19,9 +20,16 @@ class Classifier {
      */
     private $classifiedSet;
 
-    public function __construct(Set $classifiedSet)
+    private $method;
+
+    public function __construct(Set $classifiedSet, MethodInterface $method = null)
     {
+        if(is_null($method)) {
+            $method = new NearestNeighbour();
+        }
+
         $this->classifiedSet = $classifiedSet;
+        $this->method        = $method;
     }
 
 
@@ -33,10 +41,12 @@ class Classifier {
      */
     public function classify(Set $trainingSet, Collection $data, Point $classification, $normalise = true)
     {
-        $nearest = $this->getNearest($data, $normalise)->getKey();
+        $classifications = $this->prepareData($data, $normalise, $classification);
+
+        $nearest = $this->method->computeNearest($trainingSet, $classifications, $data, $classification);
 
         // return the wanted classification from the known classifications
-        return $trainingSet->getDataFor($nearest)->getDataPoint($classification);
+        return $trainingSet->getDataFor($nearest->getKey())->getDataPoint($classification);
     }
 
 
@@ -44,7 +54,7 @@ class Classifier {
      * @param Collection $data
      * @return Point
      */
-    protected function getNearest(Collection $data, $normalise)
+    protected function prepareData(Collection $data, $normalise)
     {
         // add the attribute data and key to the set of classified attributes
         $d = clone $this->classifiedSet;
@@ -54,9 +64,7 @@ class Classifier {
             $d = $d->getNormalised();
         }
 
-        // find the nearest neighbour to it, using Manhattan distance but normalise the data set first
-        $r = new Neighbour($d, new Manhattan());
-        return $r->getNearestNeighbour($data->getName())->first();
+        return $d;
     }
 
 }
