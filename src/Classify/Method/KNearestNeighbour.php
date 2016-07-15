@@ -4,6 +4,7 @@ use KevBaldwyn\Miner\Classify\MethodInterface;
 use KevBaldwyn\Miner\Data\Collection;
 use KevBaldwyn\Miner\Data\Point;
 use KevBaldwyn\Miner\Data\Set;
+use KevBaldwyn\Miner\Data\Sortable\Item;
 use KevBaldwyn\Miner\Recommend\Neighbour;
 use KevBaldwyn\Miner\Strategy\Distance\Manhattan;
 use KevBaldwyn\Miner\Utils\Arr;
@@ -24,7 +25,7 @@ class KNearestNeighbour implements MethodInterface {
      * @param Set $attributeData
      * @param Collection $toClassify
      * @param Point $classification
-     * @return mixed
+     * @return Item
      */
     public function computeNearest(Set $trainingSet, Set $attributeData, Collection $toClassify, Point $classification)
     {
