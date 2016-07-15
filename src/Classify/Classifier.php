@@ -4,8 +4,6 @@ use KevBaldwyn\Miner\Classify\Method\NearestNeighbour;
 use KevBaldwyn\Miner\Data\Collection;
 use KevBaldwyn\Miner\Data\Point;
 use KevBaldwyn\Miner\Data\Set;
-use KevBaldwyn\Miner\Recommend\Neighbour;
-use KevBaldwyn\Miner\Strategy\Distance\Manhattan;
 
 /**
  * A classifier uses a set of objects that are already labeled with the class they belong to.
