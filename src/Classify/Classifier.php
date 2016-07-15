@@ -39,11 +39,11 @@ class Classifier {
      * @param Point $classification the classification data point to return
      * @return Point
      */
-    public function classify(Set $trainingSet, Collection $data, Point $classification, $normalise = true)
+    public function classify(Set $trainingSet, Collection $toClassify, Point $classification, $normalise = true)
     {
-        $classifications = $this->prepareData($data, $normalise, $classification);
+        $attributeData = $this->prepareData($toClassify, $normalise, $classification);
 
-        $nearest = $this->method->computeNearest($trainingSet, $classifications, $data, $classification);
+        $nearest = $this->method->computeNearest($trainingSet, $attributeData, $toClassify, $classification);
 
         // return the wanted classification from the known classifications
         return $trainingSet->getDataFor($nearest->getKey())->getDataPoint($classification);

@@ -17,10 +17,19 @@ class KNearestNeighbour implements MethodInterface {
         $this->k = $k;
     }
 
-    public function computeNearest(Set $trainingSet, Set $classifications, Collection $data, Point $classification)
+
+    /**
+     * find the nearest through a process of casting votes for each of the classes for the objects that are K Nearest to the object to classify
+     * @param Set $trainingSet
+     * @param Set $attributeData
+     * @param Collection $toClassify
+     * @param Point $classification
+     * @return mixed
+     */
+    public function computeNearest(Set $trainingSet, Set $attributeData, Collection $toClassify, Point $classification)
     {
-        $r = new Neighbour($classifications, new Manhattan(), $this->k);
-        $neighbours = $r->getNearestNeighbour($data->getName());
+        $r = new Neighbour($attributeData, new Manhattan(), $this->k);
+        $neighbours = $r->getNearestNeighbour($toClassify->getName());
 
         // cast a vote for each classification
         $votes = [];

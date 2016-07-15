@@ -6,6 +6,13 @@ use KevBaldwyn\Miner\Data\Set;
 
 interface MethodInterface {
 
-    public function computeNearest(Set $trainingSet, Set $classifications, Collection $data, Point $classification);
+    /**
+     * @param Set $trainingSet
+     * @param Set $attributeData
+     * @param Collection $toClassify
+     * @param Point $classification
+     * @return mixed
+     */
+    public function computeNearest(Set $trainingSet, Set $attributeData, Collection $toClassify, Point $classification);
 
 }
