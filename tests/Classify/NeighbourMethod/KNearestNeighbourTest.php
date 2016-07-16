@@ -1,6 +1,6 @@
 <?php namespace KevBaldwyn\Tests\Miner\Classify\Method;
 
-use KevBaldwyn\Miner\Classify\Method\KNearestNeighbour;
+use KevBaldwyn\Miner\Classify\NeighbourMethod\KNearestNeighbour;
 use KevBaldwyn\Miner\Data\Collection;
 use KevBaldwyn\Miner\Data\Point;
 use KevBaldwyn\Miner\Data\Set;
@@ -8,27 +8,27 @@ use KevBaldwyn\Tests\Miner\BaseTestCase;
 
 class KNearestNeighbourTest extends BaseTestCase {
 
-    public function test_compute()
+    public function test_computeNearest()
     {
-        $n = new KNearestNeighbour(3);
-        $res = $n->computeNearest(
-            new Set([
-                'one' => new Collection([
-                    new Point('type', 'toddler')
-                ]),
-                'two' => new Collection([
-                    new Point('type', 'child')
-                ]),
-                'three' => new Collection([
-                    new Point('type', 'child')
-                ]),
-                'four' => new Collection([
-                    new Point('type', 'baby')
-                ]),
-                'five' => new Collection([
-                    new Point('type', 'baby')
-                ])
+        $n = new KNearestNeighbour(new Set([
+            'one' => new Collection([
+                new Point('type', 'toddler')
             ]),
+            'two' => new Collection([
+                new Point('type', 'child')
+            ]),
+            'three' => new Collection([
+                new Point('type', 'child')
+            ]),
+            'four' => new Collection([
+                new Point('type', 'baby')
+            ]),
+            'five' => new Collection([
+                new Point('type', 'baby')
+            ])
+        ]), true, 3);
+
+        $res = $n->computeNearest(
             new Set([
                 'one' => new Collection([
                     new Point('age', 3)

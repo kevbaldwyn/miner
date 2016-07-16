@@ -1,21 +1,17 @@
-<?php namespace KevBaldwyn\Miner\Classify\Method;
+<?php namespace KevBaldwyn\Miner\Classify\NeighbourMethod;
 
-use KevBaldwyn\Miner\Classify\MethodInterface;
 use KevBaldwyn\Miner\Data\Collection;
 use KevBaldwyn\Miner\Data\Point;
 use KevBaldwyn\Miner\Data\Set;
 use KevBaldwyn\Miner\Data\Sortable\Item;
-use KevBaldwyn\Miner\Recommend\Neighbour;
-use KevBaldwyn\Miner\Strategy\Distance\Manhattan;
 use KevBaldwyn\Miner\Utils\Arr;
 
-class KNearestNeighbour implements MethodInterface {
+class KNearestNeighbour extends NearestNeighbour {
 
-    private $k;
-
-    public function __construct($k = 5)
+    public function __construct(Set $trainingSet, $normalise = true, $k = 5)
     {
         $this->k = $k;
+        parent::__construct($trainingSet, $normalise);
     }
 
 
@@ -27,17 +23,14 @@ class KNearestNeighbour implements MethodInterface {
      * @param Point $classification
      * @return Item
      */
-    public function computeNearest(Set $trainingSet, Set $attributeData, Collection $toClassify, Point $classification)
+    public function computeNearest(Set $classifiedSet, Collection $toClassify, Point $classification)
     {
-        $r = new Neighbour($attributeData, new Manhattan(), $this->k);
-        $neighbours = $r->getNearestNeighbour($toClassify->getName());
+        $neighbours = parent::getNearest($classifiedSet, $toClassify);
 
         // cast a vote for each classification
         $votes = [];
         foreach($neighbours as $neighbour) {
-            $class = $trainingSet->getDataFor($neighbour->getKey())
-                        ->getDataPoint($classification)
-                        ->getValue();
+            $class = $this->getClassification($classification, $neighbour)->getValue();
             $votes[$class][] = $neighbour;
         }
 
