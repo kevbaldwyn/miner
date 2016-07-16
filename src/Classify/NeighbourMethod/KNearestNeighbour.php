@@ -8,6 +8,11 @@ use KevBaldwyn\Miner\Utils\Arr;
 
 class KNearestNeighbour extends NearestNeighbour {
 
+    /**
+     * @param Set $trainingSet the data set of known classifications to use to classify against
+     * @param bool $normalise
+     * @param int $k the number of neighbours to use
+     */
     public function __construct(Set $trainingSet, $normalise = true, $k = 5)
     {
         $this->k = $k;
@@ -17,8 +22,7 @@ class KNearestNeighbour extends NearestNeighbour {
 
     /**
      * find the nearest through a process of casting votes for each of the classes for the objects that are K Nearest to the object to classify
-     * @param Set $trainingSet
-     * @param Set $attributeData
+     * @param Set $classifiedSet
      * @param Collection $toClassify
      * @param Point $classification
      * @return Item

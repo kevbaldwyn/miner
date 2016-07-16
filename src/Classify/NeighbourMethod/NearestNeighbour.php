@@ -13,6 +13,10 @@ class NearestNeighbour {
     protected $trainingSet;
     protected $k = 1;
 
+    /**
+     * @param Set $trainingSet the data set of known classifications to use to classify against
+     * @param bool $normalise
+     */
     public function __construct(Set $trainingSet, $normalise = true)
     {
         $this->trainingSet = $trainingSet;
@@ -33,6 +37,11 @@ class NearestNeighbour {
     }
 
 
+    /**
+     * @param Set $classifiedSet
+     * @param Collection $toClassify
+     * @return \KevBaldwyn\Miner\Data\Sortable\Collection
+     */
     protected function getNearest(Set $classifiedSet, Collection $toClassify)
     {
         $attributeData = $this->prepareData($classifiedSet, $toClassify);
@@ -45,6 +54,11 @@ class NearestNeighbour {
     }
 
 
+    /**
+     * @param Point $classification
+     * @param Item $nearest the computed nearest
+     * @return Point
+     */
     public function getClassification(Point $classification, Item $nearest)
     {
         // return the wanted classification from the known classifications
@@ -53,6 +67,7 @@ class NearestNeighbour {
 
 
     /**
+     * @param Set $classifiedSet
      * @param Collection $data
      * @return Point
      */
